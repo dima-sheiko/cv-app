@@ -1,4 +1,4 @@
-# cv-app
+# React CV App
 
 CV creating app made with React.
 
