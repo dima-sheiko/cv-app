@@ -1,0 +1,227 @@
+@import url('./normalize.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
+/* General Rules */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: aliceblue;
+}
+
+/* App Header */
+
+h1 {
+  margin: 0;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background-color: rgb(51, 51, 51);
+  color: white;
+  font-size: 25px;
+}
+
+/* App Main */
+
+.app-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  width: 793px;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: rgb(232, 233, 233);
+  box-shadow: rgb(173, 173, 173) 0px 5px 15px;
+  border: 2px solid #195c70;
+}
+
+.resume {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: sticky;
+  top: 10px;
+  width: 793px;
+  height: 1122px;
+  padding: 40px;
+  background-color: rgb(232, 233, 233);
+  box-shadow: rgb(173, 173, 173) 0px 5px 15px;
+  border: 1px solid #195c70;
+  font-weight: 300;
+}
+
+.section-hdr {
+  color: #195c70;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 20px;
+}
+
+.cv-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form span {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-header {
+  font-size: 18px;
+  padding: 5px;
+}
+
+.form-input {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid transparent;
+  outline-style: none;
+}
+
+.form-btn {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  background-color: rgb(51, 51, 51);
+  color: white;
+}
+
+.form-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-btn.green {
+  font-size: 20px;
+  padding: 20px 12px;
+  background-color: rgb(39, 174, 96);
+}
+
+/* CV Header */
+
+.cv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  border-bottom: 3px solid #195c70;
+  width: 100%;
+}
+
+.cv-personal {
+  display: flex;
+  flex-direction: column;
+}
+
+.cv-personal h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 50px;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 10px;
+  color: #195c70;
+  overflow-wrap: break-word;
+}
+
+.cv-personal h3 {
+  font-size: 25px;
+}
+
+.cv-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.contact-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-email {
+  text-transform: lowercase;
+}
+
+.contact-item img {
+  width: 18px;
+}
+
+.cv-description p {
+  word-break: break-word;
+}
+
+/* CV Education & Experience */
+
+.cv-section-item {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.details {
+  display: flex;
+  gap: 5px;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+/* Pseudo */
+
+button:hover {
+  cursor: pointer;
+}
+
+.resume:hover {
+  transform: scale(1.01);
+  transition-duration: 0.5s;
+}
+
+/* Media Queries */
+
+@media (max-width: 1650px) {
+  .app-main {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+}
+
