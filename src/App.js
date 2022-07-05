@@ -145,12 +145,15 @@ class App extends Component {
             handleEducationChange={handleEducationChange}
             handleExperienceChange={handleExperienceChange}
           />
-          <ReactToPrint
-            /* trigger= */
+          <Resume
+            passState={this.state}
+            ref={(el) => (this.componentRef = el)}
+          />
+        </main>
+        <ReactToPrint
+            trigger={() => <button className='print-btn'></button>}
             content={() => this.componentRef}
           />
-          <Resume passState={this.state} ref={el => (this.componentRef = el)} />
-        </main>
       </div>
     );
   }
