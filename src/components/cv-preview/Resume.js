@@ -7,7 +7,7 @@ import Experience from './Experience';
 const Resume = React.forwardRef(({ passState }, ref) => {
   return (
     <div className='resume' ref={ref}>
-      <Header cvPersonal={passState.personal} ref={ref} />
+      <Header cvPersonal={passState.personal} />
       <Description cvDescription={passState.personal} />
       <h3 className='section-hdr'>Education</h3>
       {passState.education.map((e) => (

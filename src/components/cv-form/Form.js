@@ -35,9 +35,6 @@ function Form({
           handleExperienceChange={handleExperienceChange}
         />
       </form>
-      <div className='form-footer'>
-        <button className='form-btn green'>Print CV</button>
-      </div>
     </div>
   );
 }
