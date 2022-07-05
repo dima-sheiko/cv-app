@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AppHeader from './components/AppHeader';
 import Form from './components/cv-form/Form';
 import Resume from './components/cv-preview/Resume';
+import ReactToPrint from 'react-to-print';
 import uniqid from 'uniqid';
 import './styles/style.css';
 
@@ -144,7 +145,11 @@ class App extends Component {
             handleEducationChange={handleEducationChange}
             handleExperienceChange={handleExperienceChange}
           />
-          <Resume passState={this.state}/>
+          <ReactToPrint
+            /* trigger= */
+            content={() => this.componentRef}
+          />
+          <Resume passState={this.state} ref={el => (this.componentRef = el)} />
         </main>
       </div>
     );

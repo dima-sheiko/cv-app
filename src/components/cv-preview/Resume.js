@@ -4,10 +4,10 @@ import Description from './Description';
 import Education from './Education';
 import Experience from './Experience';
 
-function Resume({ passState }) {
+const Resume = React.forwardRef(({ passState }, ref) => {
   return (
-    <div className='resume'>
-      <Header cvPersonal={passState.personal} />
+    <div className='resume' ref={ref}>
+      <Header cvPersonal={passState.personal} ref={ref} />
       <Description cvDescription={passState.personal} />
       <h3 className='section-hdr'>Education</h3>
       {passState.education.map((e) => (
@@ -19,6 +19,6 @@ function Resume({ passState }) {
       ))}
     </div>
   );
-}
+});
 
 export default Resume;
