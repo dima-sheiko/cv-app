@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PersonalContext } from '../../App';
 
-function Personal({ personal, handlePersonalChange }) {
+function Personal({ handlePersonalChange }) {
+  const personal = useContext(PersonalContext);
+
   return (
     <span>
       <h3 className='form-header'>Personal Information</h3>

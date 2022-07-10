@@ -1,20 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Header from './Header';
 import Description from './Description';
 import Education from './Education';
 import Experience from './Experience';
+import { EducationContext, ExperienceContext } from '../../App';
 
-const Resume = React.forwardRef(({ passState }, ref) => {
+const Resume = React.forwardRef((props, ref) => {
+  const education = useContext(EducationContext);
+  const experience = useContext(ExperienceContext);
+
   return (
     <div className='resume' ref={ref}>
-      <Header cvPersonal={passState.personal} />
-      <Description cvDescription={passState.personal} />
+      <Header />
+      <Description />
       <h3 className='section-hdr'>Education</h3>
-      {passState.education.map((e) => (
+      {education.map((e) => (
         <Education key={e.id} cvEducation={e} />
       ))}
       <h3 className='section-hdr'>Experience</h3>
-      {passState.experience.map((e) => (
+      {experience.map((e) => (
         <Experience key={e.id} cvExperience={e} />
       ))}
     </div>

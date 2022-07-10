@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { EducationContext } from '../../App';
 
-function Education({ education, handleAddEducation, handleRemoveEducation, handleEducationChange }) {
+function Education({
+  handleAddEducation,
+  handleRemoveEducation,
+  handleEducationChange,
+}) {
+  const education = useContext(EducationContext);
+
   return education.map((el, index) => (
     <span key={index}>
       <h3 className='form-header'>Education</h3>
@@ -44,7 +51,14 @@ function Education({ education, handleAddEducation, handleRemoveEducation, handl
         name='descriptionEd'
         placeholder='Description'
       />
-      {education.length > 1 && <button onClick={() => handleRemoveEducation(index)} className='form-btn'>Delete</button>}
+      {education.length > 1 && (
+        <button
+          onClick={() => handleRemoveEducation(index)}
+          className='form-btn'
+        >
+          Delete
+        </button>
+      )}
       {education.length - 1 === index && education.length < 5 && (
         <button onClick={handleAddEducation} className='form-btn'>
           Add

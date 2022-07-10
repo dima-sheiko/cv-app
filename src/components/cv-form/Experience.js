@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ExperienceContext } from '../../App';
 
 function Experience({
-  experience,
   handleAddExperience,
   handleRemoveExperience,
   handleExperienceChange,
 }) {
+  const experience = useContext(ExperienceContext);
+
   return experience.map((el, index) => (
     <span key={index}>
       <h3 className='form-header'>Experience</h3>

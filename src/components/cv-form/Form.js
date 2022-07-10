@@ -4,9 +4,6 @@ import Education from './Education';
 import Experience from './Experience';
 
 function Form({
-  personal,
-  education,
-  experience,
   handleAddEducation,
   handleAddExperience,
   handleRemoveEducation,
@@ -19,17 +16,14 @@ function Form({
     <div className='form-wrapper'>
       <form className='form'>
         <Personal
-          personal={personal}
           handlePersonalChange={handlePersonalChange}
         />
         <Education
-          education={education}
           handleAddEducation={handleAddEducation}
           handleRemoveEducation={handleRemoveEducation}
           handleEducationChange={handleEducationChange}
         />
         <Experience
-          experience={experience}
           handleAddExperience={handleAddExperience}
           handleRemoveExperience={handleRemoveExperience}
           handleExperienceChange={handleExperienceChange}

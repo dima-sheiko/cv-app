@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { PersonalContext } from '../../App';
 
-function Description({ cvDescription }) {
+function Description() {
+  const description = useContext(PersonalContext);
+
   return (
     <div className='cv-description'>
-      <p>{cvDescription.descriptionPers}</p>
+      <p>{description.descriptionPers}</p>
     </div>
   );
 }
 
 export default Description;
+
