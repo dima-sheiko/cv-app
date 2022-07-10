@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useRef } from 'react';
 import AppHeader from './components/AppHeader';
 import Form from './components/cv-form/Form';
 import Resume from './components/cv-preview/Resume';
@@ -6,157 +6,137 @@ import ReactToPrint from 'react-to-print';
 import uniqid from 'uniqid';
 import './styles/style.css';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
+export const PersonalContext = React.createContext();
+export const EducationContext = React.createContext();
+export const ExperienceContext = React.createContext();
 
-    this.state = {
-      personal: {
-        name: '',
-        title: '',
-        phone: '',
-        email: '',
-        location: '',
-        descriptionPers: '',
+function App() {
+  /* State */
+
+  const [personal, setPersonal] = useState({
+    name: '',
+    title: '',
+    phone: '',
+    email: '',
+    location: '',
+    descriptionPers: '',
+  });
+
+  const [education, setEducation] = useState([
+    {
+      id: uniqid(),
+      course: '',
+      university: '',
+      fromEd: '',
+      toEd: '',
+      descriptionEd: '',
+    },
+  ]);
+
+  const [experience, setExperience] = useState([
+    {
+      id: uniqid(),
+      position: '',
+      company: '',
+      fromEx: '',
+      toEx: '',
+      descriptionEx: '',
+    },
+  ]);
+
+  /* Ref */
+
+  const componentRef = useRef();
+
+  /* Event Handlers */
+
+  const handleAddEducation = () => {
+    setEducation([
+      ...education,
+      {
+        course: '',
+        university: '',
+        fromEd: '',
+        toEd: '',
+        descriptionEd: '',
       },
-
-      education: [
-        {
-          id: uniqid(),
-          course: '',
-          university: '',
-          fromEd: '',
-          toEd: '',
-          descriptionEd: '',
-        },
-      ],
-
-      experience: [
-        {
-          id: uniqid(),
-          position: '',
-          company: '',
-          fromEx: '',
-          toEx: '',
-          descriptionEx: '',
-        },
-      ],
-    };
-
-    this.handleAddEducation = this.handleAddEducation.bind(this);
-    this.handleAddExperience = this.handleAddExperience.bind(this);
-    this.handleRemoveEducation = this.handleRemoveEducation.bind(this);
-    this.handleRemoveExperience = this.handleRemoveExperience.bind(this);
-    this.handlePersonalChange = this.handlePersonalChange.bind(this);
-    this.handleEducationChange = this.handleEducationChange.bind(this);
-    this.handleExperienceChange = this.handleExperienceChange.bind(this);
-  }
-
-  handleAddEducation = () => {
-    this.setState((prevState) => ({
-      education: [
-        ...prevState.education,
-        {
-          course: '',
-          university: '',
-          fromEd: '',
-          toEd: '',
-          descriptionEd: '',
-        },
-      ],
-    }));
+    ]);
   };
 
-  handleAddExperience = () => {
-    this.setState((prevState) => ({
-      experience: [
-        ...prevState.experience,
-        {
-          company: '',
-          position: '',
-          fromEx: '',
-          toEx: '',
-          descriptionEx: '',
-        },
-      ],
-    }));
+  const handleAddExperience = () => {
+    setExperience([
+      ...experience,
+      {
+        company: '',
+        position: '',
+        fromEx: '',
+        toEx: '',
+        descriptionEx: '',
+      },
+    ]);
   };
 
-  handleRemoveEducation = (index) => {
-    const list = [...this.state.education];
+  const handleRemoveEducation = (index) => {
+    const list = [...education];
     list.splice(index, 1);
-    this.setState((prevState) => ({ ...prevState, education: list }));
+    setEducation(list);
   };
 
-  handleRemoveExperience = (index) => {
-    const list = [...this.state.experience];
+  const handleRemoveExperience = (index) => {
+    const list = [...experience];
     list.splice(index, 1);
-    this.setState((prevState) => ({ ...prevState, experience: list }));
+    setExperience(list);
   };
 
-  handlePersonalChange = (e) => {
+  const handlePersonalChange = (e) => {
     const value = e.target.value;
-    this.setState((prevState) => ({
-      ...prevState,
-      personal: { ...prevState.personal, [e.target.name]: value },
-    }));
+    setPersonal({
+      ...personal,
+      [e.target.name]: value,
+    });
   };
 
-  handleEducationChange = (e, index) => {
+  const handleEducationChange = (e, index) => {
     const { name, value } = e.target;
-    const list = [...this.state.education];
+    const list = [...education];
     list[index][name] = value;
-    this.setState((prevState) => ({ ...prevState, education: list }));
+    setEducation(list);
   };
 
-  handleExperienceChange = (e, index) => {
+  const handleExperienceChange = (e, index) => {
     const { name, value } = e.target;
-    const list = [...this.state.experience];
+    const list = [...experience];
     list[index][name] = value;
-    this.setState((prevState) => ({ ...prevState, experience: list }));
+    setExperience(list);
   };
 
-  render() {
-    const {
-      handleAddEducation,
-      handleAddExperience,
-      handleRemoveEducation,
-      handleRemoveExperience,
-      handlePersonalChange,
-      handleEducationChange,
-      handleExperienceChange,
-    } = this;
-
-    const { personal, education, experience } = this.state;
-
-    return (
-      <div>
-        <AppHeader />
-        <main className='app-main'>
-          <Form
-            personal={personal}
-            education={education}
-            experience={experience}
-            handleAddEducation={handleAddEducation}
-            handleAddExperience={handleAddExperience}
-            handleRemoveEducation={handleRemoveEducation}
-            handleRemoveExperience={handleRemoveExperience}
-            handlePersonalChange={handlePersonalChange}
-            handleEducationChange={handleEducationChange}
-            handleExperienceChange={handleExperienceChange}
-          />
-          <Resume
-            passState={this.state}
-            ref={(el) => (this.componentRef = el)}
-          />
-        </main>
-        <ReactToPrint
-            trigger={() => <button className='print-btn'></button>}
-            content={() => this.componentRef}
-          />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <AppHeader />
+      <main className='app-main'>
+        <PersonalContext.Provider value={personal}>
+          <EducationContext.Provider value={education}>
+            <ExperienceContext.Provider value={experience}>
+              <Form
+                handleAddEducation={handleAddEducation}
+                handleAddExperience={handleAddExperience}
+                handleRemoveEducation={handleRemoveEducation}
+                handleRemoveExperience={handleRemoveExperience}
+                handlePersonalChange={handlePersonalChange}
+                handleEducationChange={handleEducationChange}
+                handleExperienceChange={handleExperienceChange}
+              />
+              <Resume ref={componentRef} />
+            </ExperienceContext.Provider>
+          </EducationContext.Provider>
+        </PersonalContext.Provider>
+      </main>
+      <ReactToPrint
+        trigger={() => <button className='print-btn'></button>}
+        content={() => componentRef.current}
+      />
+    </div>
+  );
 }
 
 export default App;
