@@ -2,6 +2,6 @@
 
 CV creating app made with React.
 
-[Live Demo](https://dima-sheiko.github.io/cv-app/)
+👉 [Live Demo](https://dima-sheiko.github.io/cv-app/)
 
 
